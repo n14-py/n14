@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/main.css">
+    <title>N14py</title>
+</head>
+
+<body>
+    <div class="reproductor">
+        <video width="641" height="360" src="video/2021-09-26 10-22-51_Trim (2).mp4" controls id="video" onended="siguienteVideo()">
+            <track src="sub/idontwannabeyouanymore_en.vtt" kind="subtitles" srclang="en" label="English" id="subIng" default>
+            <track src="sub/idontwannabeyouanymore.es.vtt" kind="subtitles" srclang="es" label="Español" id="subEsp">
+        </video>
+        <div class="info">
+            <p id="titulo">1</p>
+            <p id="categoria">tik tok</p>
+            <p id="descripcion"></p>
+        </div>
+    </div>
+
+    <div id="contenedorVideos" class="contenedor">
+
+    </div>
+
+    <script>
+        let videos = [{
+                nombre: '2.',
+                categoria: 'Tik tok',
+                descripcion: '',
+                src: 'video/2021-09-26 10-22-51_Trim (3).mp4',
+                subtitulos: {
+                    ingles: 'sub/idontwannabeyouanymore_en.vtt',
+                    espanol: 'sub/idontwannabeyouanymore.es.vtt'
+
+                }
+
+            },
+            {
+                nombre: '3.',
+                categoria: 'Tik tok',
+                descripcion: '',
+                src: 'video/2021-09-26 10-22-51_Trim (4).mp4',
+                subtitulos: {
+                    ingles: 'sub/leftovers.en.vtt',
+                    espanol: 'sub/leftovers.es.vtt'
+
+                }
+
+            },
+            {
+                nombre: '4.',
+                categoria: 'Tik tok',
+                descripcion: '',
+                src: 'video/2021-09-26 10-22-51_Trim (5).mp4',
+                subtitulos: {
+                    ingles: 'sub/sober.en.vtt',
+                    espanol: 'sub/sober.es.vtt'
+
+                }
+
+
+
+
+            },
+
+
+
+            {
+                nombre: '5.',
+                categoria: 'Tik tok',
+                descripcion: '',
+                src: 'video/2021-09-26 10-22-51_Trim.mp4',
+                subtitulos: {
+                    ingles: 'sub/leftovers.en.vtt',
+                    espanol: 'sub/leftovers.es.vtt'
+
+                }
+
+            },
+
+
+
+
+        ];
+        var videoActual = null;
+
+        function cargar() {
+
+            videoActual = videos[0];
+
+            for (let i = 0; i < videos.length; i++) {
+
+                let video = videos[i];
+                agregarvideo(video, i);
+            }
+
+            console.log(video);
+        }
+
+        function agregarvideo(video) {
+
+            let texto = '<article class="estilo" ondblclick="cambiarVideo(' + videos.indexOf(video) + ')">';
+            texto += '<span class="tooltiptext">' + video.descripcion + '</span>';
+            texto += '<video width="150" height="150" src="' + video.src + '"> </video>';
+            texto += '<div class="infomini">'
+            texto += '<p class="nombre">' + video.nombre + '</p>';
+            texto += '<p class="categoria">' + video.categoria + '</p>';
+            texto += '</div>'
+            texto += '</article>';
+            document.getElementById('contenedorVideos').innerHTML += texto;
+        }
+
+
+        function cambiarVideo(idVideo) {
+            let nombre = document.getElementById('titulo');
+            let categoria = document.getElementById('categoria');
+            let descripcion = document.getElementById('descripcion');
+            let ing = document.getElementById('subIng');
+            let esp = document.getElementById('subEsp');
+            let video = videos[idVideo];
+            let etiquetaVideo = document.getElementById('video');
+            etiquetaVideo.setAttribute('src', video.src);
+            etiquetaVideo.play();
+            titulo.innerHTML = video.nombre;
+            categoria.innerHTML = video.categoria;
+            descripcion.innerHTML = video.descripcion;
+            subIng.src = video.subtitulos.ingles;
+            subEsp.src = video.subtitulos.espanol;
+            videoActual = video;
+
+
+        }
+
+        function siguienteVideo() {
+
+            let indiceActual = videos.indexOf(videoActual);
+            let numeroVideos = videos.length;
+            let idVideoNuevo;
+
+            if (indiceActual < numeroVideos - 1) {
+
+                idVideoNuevo = indiceActual + 1;
+
+            } else {
+
+                idVideoNuevo = 0;
+
+            }
+
+            cambiarVideo(idVideoNuevo);
+
+        }
+
+        window.onload = cargar();
+    </script>
+</body>
+</html>
+
+
+<body background="https://i.pinimg.com/originals/a7/0e/fa/a70efaa9c83cf80d8073a416292434e4.gif" bgcolor="">
